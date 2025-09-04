@@ -9,9 +9,10 @@ class Human:
 ## don't touch above this line
 
 
-class Archer:
+class Archer(Human):
     def __init__(self, name, num_arrows):
-        pass
+        super().__init__(name)
+        self.__num_arrows = num_arrows
 
     def get_num_arrows(self):
-        pass
+        return self.__num_arrows
