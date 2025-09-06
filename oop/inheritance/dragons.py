@@ -5,7 +5,7 @@ class Unit:
         self.pos_y = pos_y
 
     def in_area(self, x_1, y_1, x_2, y_2):
-        pass
+        return (x_1 <= self.pos_x <= x_2) and (y_1 <= self.pos_y <= y_2)
 
 
 class Dragon(Unit):
@@ -14,4 +14,13 @@ class Dragon(Unit):
         self.__fire_range = fire_range
 
     def breathe_fire(self, x, y, units):
-        pass
+        x_1 = x - self.__fire_range
+        x_2 = x + self.__fire_range
+        y_1 = y - self.__fire_range
+        y_2 = y + self.__fire_range
+
+        affected_units = []
+        for unit in units:
+            if unit.in_area(x_1, y_1, x_2, y_2):
+                affected_units.append(unit)
+        return affected_units
