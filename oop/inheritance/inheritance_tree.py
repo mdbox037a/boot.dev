@@ -27,3 +27,14 @@ class Archer(Hero):
         else:
             self.__num_arrows -= 1
             target.take_damage(10)
+
+
+# don't touch above this line
+
+
+class Wizard(Hero):
+    def __init__(self, name, health, mana):
+        pass
+
+    def cast(self, target):
+        pass
