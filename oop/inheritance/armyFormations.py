@@ -1,14 +1,15 @@
 class Rectangle:
     def __init__(self, length, width):
-        pass
+        self.length = length
+        self.width = width
 
     def get_area(self):
-        pass
+        return self.length * self.width
 
     def get_perimeter(self):
-        pass
+        return (2 * self.length) + (2 * self.width)
 
 
 class Square(Rectangle):
     def __init__(self, length):
-        pass
+        super().__init__(length, length)
