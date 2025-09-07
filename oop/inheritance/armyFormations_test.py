@@ -1,4 +1,4 @@
-from armyFormations.py import *
+from armyFormations import *
 
 run_cases = [
     ((2, 4), 8, 12),
