@@ -11,17 +11,24 @@ class Card:
         self.suit_index = SUITS.index(suit)
 
     def __eq__(self, other):
-        s = False
+        rank_eq = False
         if self.rank_index == other.rank_index:
-            s = True
-        r = False
+            rank_eq = True
+        suit_eq = False
         if self.suit_index == other.suit_index:
-            r = True
+            suit_eq = True
 
-        return s and r
+        return suit_eq and rank_eq
 
     def __lt__(self, other):
-        pass
+        comparison = self.rank_index - other.rank_index
+        if comparison == 0:
+            comparison = self.suit_index - other.suit_index
+            return comparison < 0
+        elif comparison < 0:
+            return True
+        else:
+            return False
 
     def __gt__(self, other):
         pass
