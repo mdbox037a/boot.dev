@@ -31,7 +31,14 @@ class Card:
             return False
 
     def __gt__(self, other):
-        pass
+        comparison = self.rank_index - other.rank_index
+        if comparison == 0:
+            comparison = self.suit_index - other.suit_index
+            return comparison > 0
+        elif comparison > 0:
+            return True
+        else:
+            return False
 
     # don't touch below this line
 
