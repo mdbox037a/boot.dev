@@ -37,8 +37,28 @@ class Round:
 
 
 class HighCardRound(Round):
-    pass
+    def __init__(self, card1, card2):
+        self.card1 = card1
+        self.card2 = card2
+
+    def resolve_round(self):
+        if self.card1 > self.card2:
+            return 1
+        elif self.card1 < self.card2:
+            return 2
+        else:
+            return 0
 
 
 class LowCardRound(Round):
-    pass
+    def __init__(self, card1, card2):
+        self.card1 = card1
+        self.card2 = card2
+
+    def resolve_round(self):
+        if self.card1 < self.card2:
+            return 1
+        if self.card1 > self.card2:
+            return 2
+        else:
+            return 0
