@@ -1,5 +1,7 @@
 def change_bullet_style(document):
-    pass
+    line_list = document.split("\n")
+    fixed_lines = map(convert_line, line_list)
+    return "\n".join(fixed_lines)
 
 
 # Don't edit below this line
