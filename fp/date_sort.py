@@ -1,3 +1,5 @@
 def sort_dates(dates):
-    dates.sort()
-    return dates
+    working_list = dates.copy()
+    md_array = list(map(lambda x: x.split("-"), working_list))
+    sorted_md_array = sorted(md_array, key=lambda x: (x[2], x[0], x[1]))
+    return list(map(lambda x: "-".join(x), sorted_md_array))
