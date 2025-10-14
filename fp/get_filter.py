@@ -1,6 +1,14 @@
 def get_filter_cmd(filter_one, filter_two):
-    def filter_cmd(content, option):
-        pass
+    def filter_cmd(content, option="--one"):
+        local_content = content
+        if option == "--one":
+            return filter_one(local_content)
+        elif option == "--two":
+            return filter_two(local_content)
+        elif option == "--three":
+            return filter_two(filter_one(local_content))
+        else:
+            raise Exception("invalid option")
 
     return filter_cmd
 
