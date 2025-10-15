@@ -1,2 +1,9 @@
 def word_count_aggregator():
-    pass
+    count = 0
+
+    def word_count(doc):
+        nonlocal count
+        count += len(doc.split())
+        return count
+
+    return word_count
