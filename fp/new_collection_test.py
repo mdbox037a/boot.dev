@@ -1,4 +1,4 @@
-from fp.new_collection import *
+from new_collection import *
 
 
 run_cases = [
