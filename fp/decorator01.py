@@ -17,4 +17,7 @@ def file_type_aggregator(func_to_decorate):
 
 # don't touch above this line
 
-# ?
+
+@file_type_aggregator
+def process_doc(doc, file_type):
+    return f"Processing doc: '{doc}'. File Type: {file_type}"
