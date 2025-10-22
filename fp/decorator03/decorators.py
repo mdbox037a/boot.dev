@@ -1,6 +1,11 @@
 def markdown_to_text_decorator(func):
     def wrapper(*args, **kwargs):
-        pass
+        new_list = list(map(convert_md_to_txt, args))
+        new_dict = dict(
+            map(lambda item: (item[0], convert_md_to_txt(item[1])), kwargs.items())
+        )
+
+        return func(*new_list, **new_dict)
 
     return wrapper
 
@@ -14,3 +19,4 @@ def convert_md_to_txt(doc):
         line = lines[i]
         lines[i] = line.lstrip("# ")
     return "\n".join(lines)
+
