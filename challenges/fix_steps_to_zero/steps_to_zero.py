@@ -10,6 +10,6 @@ def steps_to_zero(n):
     if n == 0:
         return 0
     if n % 2 == 0:
-        return steps_to_zero(n / 2) + 1
+        return steps_to_zero(n // 2) + 1
     else:
-        return steps_to_zero(n - 1)
+        return steps_to_zero(n - 1) + 1
