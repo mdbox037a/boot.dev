@@ -1,4 +1,4 @@
-from fix_steps_to_zero import *
+from steps_to_zero import *
 
 run_cases = [
     (14, 6),
