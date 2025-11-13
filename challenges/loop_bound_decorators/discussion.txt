@@ -1,0 +1,11 @@
+Hints:
+
+A closure “remembers” free variables from an outer scope, but consider when their values are resolved.
+Binding values at definition time vs. at call time can change behavior inside wrappers.
+References:
+
+Python docs: Functions and closures — https://docs.python.org/3/tutorial/classes.html#python-scopes-and-namespaces
+functools.wraps — https://docs.python.org/3/library/functools.html#functools.wraps
+
+
+The decorated handlers created inside the loop all behave as if they captured the final loop values rather than per-iteration values. Why does this happen, and at a high level, how would you structure the code so each decorated function captures its own iteration-specific values?
