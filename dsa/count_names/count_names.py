@@ -1,6 +1,9 @@
 def count_names(list_of_lists, target_name):
     count = 0
-    for name_list in list_of_lists:
-        if target_name in name_list:
+    combined = []
+    for names_list in list_of_lists:
+        combined.extend(names_list)
+    for i in combined:
+        if i == target_name:
             count += 1
     return count
