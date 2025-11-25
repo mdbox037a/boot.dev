@@ -7,3 +7,9 @@ class Stack:
 
     def size(self):
         return len(self.items)
+
+    def peek(self):
+        pass
+
+    def pop(self):
+        pass
