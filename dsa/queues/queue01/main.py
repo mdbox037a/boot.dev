@@ -3,13 +3,19 @@ class Queue:
         self.items = []
 
     def push(self, item):
-        pass
+        self.items.insert(0, item)
 
     def pop(self):
-        pass
+        if len(self.items) == 0:
+            return None
+        holder = self.items[-1]
+        del self.items[-1]
+        return holder
 
     def peek(self):
-        pass
+        if len(self.items) == 0:
+            return None
+        return self.items[-1]
 
     def size(self):
-        pass
+        return len(self.items)
