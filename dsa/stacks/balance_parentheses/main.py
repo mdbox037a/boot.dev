@@ -6,11 +6,7 @@ def is_balanced(input_str):
     for char in input_str:
         if char == "(":
             stack.push(char)
-        elif char == ")" and stack.size() == 0:
-            stack.push(char)
         elif char == ")":
-            stack.pop()
-    if stack.size() != 0:
-        return False
-    else:
-        return True
+            if stack.pop() is None:
+                return False
+    return stack.peek() is None
