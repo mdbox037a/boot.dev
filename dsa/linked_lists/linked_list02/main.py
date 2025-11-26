@@ -3,7 +3,14 @@ from node import Node
 
 class LinkedList:
     def add_to_tail(self, node):
-        pass
+        if self.head is None:
+            self.head = node
+            return
+        else:
+            last = None
+            for n in self.__iter__():
+                last = n
+            last.set_next(node)
 
     # don't touch below this line
 
