@@ -3,7 +3,16 @@ from node import Node
 
 class LLQueue:
     def remove_from_head(self):
-        pass
+        if self.head is None:
+            return None
+        old_head = self.head
+        if self.head.next is None:
+            self.head = None
+            self.tail = None
+            return old_head
+        self.head = self.head.next
+        old_head.next = None
+        return old_head
 
     # don't touch below this line
 
