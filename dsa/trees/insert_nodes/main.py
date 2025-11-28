@@ -5,4 +5,17 @@ class BSTNode:
         self.val = val
 
     def insert(self, val):
-        pass
+        if self.val is None:
+            self.val = val
+        elif self.val == val:
+            return
+        elif val < self.val:
+            if self.left is None:
+                self.left = BSTNode(val)
+            else:
+                BSTNode.insert(self.left, val)
+        else:
+            if self.right is None:
+                self.right = BSTNode(val)
+            else:
+                BSTNode.insert(self.right, val)
