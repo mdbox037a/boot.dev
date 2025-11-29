@@ -3,13 +3,13 @@ class BSTNode:
         if self.left is None:
             return self.val
         else:
-            return BSTNode.get_min(self.left)
+            return self.left.get_min()
 
     def get_max(self):
         if self.right is None:
             return self.val
         else:
-            return BSTNode.get_max(self.right)
+            return self.right.get_max()
 
     # don't touch below this line
 
