@@ -1,9 +1,15 @@
 class BSTNode:
     def get_min(self):
-        pass
+        if self.left is None:
+            return self.val
+        else:
+            return BSTNode.get_min(self.left)
 
     def get_max(self):
-        pass
+        if self.right is None:
+            return self.val
+        else:
+            return BSTNode.get_max(self.right)
 
     # don't touch below this line
 
