@@ -1,6 +1,28 @@
 class BSTNode:
     def delete(self, val):
-        pass
+        if self.val is None:
+            return None
+        if val < self.val:
+            if self.left:
+                self.left = self.left.delete(val)
+                return self
+        if val > self.val:
+            if self.right:
+                self.right = self.right.delete(val)
+                return self
+        if val == self.val:
+            if not self.right:
+                return self.left
+            elif not self.left:
+                return self.right
+            else:
+                current = self.right
+                while current.left is not None:
+                    current = current.left
+                successor_val = current.val
+                self.val = successor_val
+                self.right = self.right.delete(successor_val)
+                return self
 
     # don't touch below this line
 
