@@ -1,6 +1,12 @@
 class BSTNode:
     def preorder(self, visited):
-        pass
+        if self.val:
+            visited.append(self.val)
+        if self.left:
+            self.left.preorder(visited)
+        if self.right:
+            self.right.preorder(visited)
+        return visited
 
     # don't touch below this line
 
