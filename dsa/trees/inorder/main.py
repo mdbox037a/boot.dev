@@ -1,6 +1,12 @@
 class BSTNode:
     def inorder(self, visited):
-        pass
+        if self.left:
+            self.left.inorder(visited)
+        if self.val:
+            visited.append(self.val)
+        if self.right:
+            self.right.inorder(visited)
+        return visited
 
     # don't touch below this line
 
