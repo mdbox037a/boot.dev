@@ -1,6 +1,15 @@
 class BSTNode:
     def height(self):
-        pass
+        left_height = 0
+        right_height = 0
+
+        if self.val is None:
+            return 0
+        if self.left:
+            left_height = self.left.height()
+        if self.right:
+            right_height = self.right.height()
+        return max(left_height, right_height) + 1
 
     # don't touch below this line
 
