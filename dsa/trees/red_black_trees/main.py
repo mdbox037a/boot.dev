@@ -16,4 +16,13 @@ class RBTree:
         self.root = self.nil
 
     def insert(self, val):
-        pass
+        new_node = RBNode(val)
+        self.left = self.nil
+        self.right = self.nil
+        self.red = True
+
+        parent = None
+        current = self.root
+        while current is not self.nil:
+            parent = current
+            # stopping point
