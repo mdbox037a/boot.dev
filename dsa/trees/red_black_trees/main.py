@@ -17,12 +17,26 @@ class RBTree:
 
     def insert(self, val):
         new_node = RBNode(val)
-        self.left = self.nil
-        self.right = self.nil
-        self.red = True
+        new_node.left = self.nil
+        new_node.right = self.nil
+        new_node.red = True
 
         parent = None
         current = self.root
         while current is not self.nil:
             parent = current
-            # stopping point
+            if new_node.val < current.val:
+                current = current.left
+            elif new_node.val > current.val:
+                current = current.right
+            else:
+                return
+
+        new_node.parent = parent
+        if new_node.parent is None:
+            self.root = new_node
+        else:
+            if new_node.val < new_node.parent.val:
+                new_node.parent.left = new_node
+            elif new_node.val > new_node.parent.val:
+                new_node.parent.right = new_node
