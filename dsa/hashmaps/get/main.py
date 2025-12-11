@@ -1,6 +1,10 @@
 class HashMap:
     def get(self, key):
-        pass
+        index = self.key_to_index(key)
+        if self.hashmap[index] is None:
+            raise Exception("sorry, key not found")
+        else:
+            return self.hashmap[index][1]
 
     # don't touch below this line
 
