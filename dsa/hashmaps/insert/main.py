@@ -1,6 +1,8 @@
 class HashMap:
     def insert(self, key, value):
-        pass
+        index = self.key_to_index(key)
+        kv = (key, value)
+        self.hashmap[index] = kv
 
     # don't touch below this line
 
