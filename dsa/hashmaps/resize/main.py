@@ -1,14 +1,31 @@
 class HashMap:
     def insert(self, key, value):
-        # ?
+        self.resize()
         index = self.key_to_index(key)
         self.hashmap[index] = (key, value)
 
     def resize(self):
-        pass
+        if len(self.hashmap) == 0:
+            self.hashmap = [None]
+            return
+        elif self.current_load() < 0.05:
+            return
+        else:
+            tmp = self.hashmap
+            self.hashmap = [None] * (10 * len(tmp))
+            for k in tmp:
+                if k:
+                    self.insert(k[0], k[1])
 
     def current_load(self):
-        pass
+        filled_buckets = 0
+        for bucket in self.hashmap:
+            if bucket:
+                filled_buckets = filled_buckets + 1
+        if len(self.hashmap) == 0:
+            return 1
+        else:
+            return filled_buckets / len(self.hashmap)
 
     # don't touch below this line
 
