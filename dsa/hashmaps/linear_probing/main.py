@@ -1,9 +1,29 @@
 class HashMap:
     def insert(self, key, value):
-        pass
+        original_index = self.key_to_index(key)
+        index = original_index
+        first_iteration = True
+        while self.hashmap[index] is not None and key != self.hashmap[index][0]:
+            if not first_iteration and index == original_index:
+                raise Exception("hashmap is full")
+            else:
+                index = (index + 1) % len(self.hashmap)
+                first_iteration = False
+        self.hashmap[index] = (key, value)
 
     def get(self, key):
-        pass
+        original_index = self.key_to_index(key)
+        index = original_index
+        first_iteration = True
+        while self.hashmap[index] is not None:
+            if self.hashmap[index][0] == key:
+                return self.hashmap[index][1]
+            elif not first_iteration and index == original_index:
+                raise Exception("sorry, key not found")
+            else:
+                index = (index + 1) % len(self.hashmap)
+                first_iteration = False
+        raise Exception("sorry, key not found")
 
     # don't touch below this line
 
