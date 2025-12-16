@@ -1,6 +1,14 @@
 class Trie:
     def exists(self, word):
-        pass
+        current = self.root
+        for char in word:
+            if char not in current:
+                return False
+            current = current[char]
+        if self.end_symbol in current and current[self.end_symbol] is True:
+            return True
+        else:
+            return False
 
     # don't touch below this line
 
