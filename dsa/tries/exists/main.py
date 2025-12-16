@@ -5,10 +5,7 @@ class Trie:
             if char not in current:
                 return False
             current = current[char]
-        if self.end_symbol in current and current[self.end_symbol] is True:
-            return True
-        else:
-            return False
+        return self.end_symbol in current and current[self.end_symbol] is True
 
     # don't touch below this line
 
