@@ -1,6 +1,17 @@
 class Trie:
     def find_matches(self, document):
-        pass
+        matches = set()
+        for outer_index in range(len(document)):
+            current_level = self.root
+            for inner_index in range(outer_index, len(document)):
+                if document[inner_index] not in current_level:
+                    break
+                else:
+                    current_level = current_level[document[inner_index]]
+
+                if self.end_symbol in current_level:
+                    matches.add(document[outer_index : inner_index + 1])
+        return matches
 
     # don't touch below this line
 
