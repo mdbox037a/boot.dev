@@ -1,9 +1,14 @@
 class Graph:
     def __init__(self):
-        pass
+        self.graph = {}
 
     def add_edge(self, u, v):
-        pass
+        if u not in self.graph:
+            self.graph[u] = set()
+        if v not in self.graph:
+            self.graph[v] = set()
+        self.graph[u].add(v)
+        self.graph[v].add(u)
 
     # don't touch below this line
 
