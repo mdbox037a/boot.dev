@@ -1,6 +1,6 @@
 class Graph:
     def adjacent_nodes(self, node):
-        pass
+        return self.graph[node]
 
     # don't touch below this line
 
