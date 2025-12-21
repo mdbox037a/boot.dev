@@ -1,6 +1,10 @@
 class Graph:
     def unconnected_vertices(self):
-        pass
+        unconnected = []
+        for key in self.graph.keys():
+            if not self.graph[key]:
+                unconnected.append(key)
+        return unconnected
 
     # don't touch below this line
 
