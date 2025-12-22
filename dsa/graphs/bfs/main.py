@@ -1,6 +1,18 @@
 class Graph:
     def breadth_first_search(self, v):
-        pass
+        visited = []
+        to_visit = [v]
+
+        while len(to_visit) > 0:
+            current = to_visit[0]
+            to_visit.pop(0)
+            visited.append(current)
+            neighbors = sorted(self.graph[current])
+            for neighbor in neighbors:
+                if neighbor not in visited and neighbor not in to_visit:
+                    to_visit.append(neighbor)
+
+        return visited
 
     # don't touch below this line
 
