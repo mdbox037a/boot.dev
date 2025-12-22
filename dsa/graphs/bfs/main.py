@@ -3,9 +3,8 @@ class Graph:
         visited = []
         to_visit = [v]
 
-        while len(to_visit) > 0:
-            current = to_visit[0]
-            to_visit.pop(0)
+        while to_visit:
+            current = to_visit.pop(0)
             visited.append(current)
             neighbors = sorted(self.graph[current])
             for neighbor in neighbors:
