@@ -1,6 +1,6 @@
 #include <stdio.h>
 
 int main() {
-  printf("Program in C!\n");
-  return 0;
+	printf("Program in C!\n");
+	return 0;
 }
