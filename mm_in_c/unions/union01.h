@@ -1,4 +1,7 @@
-// ?
+typedef enum SnekObjectKind {
+  INTEGER,
+  STRING,
+} snek_object_kind_t;
 
 // don't touch below this line'
 

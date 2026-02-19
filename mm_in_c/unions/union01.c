@@ -2,7 +2,14 @@
 #include <stdio.h>
 
 void format_object(snek_object_t obj, char *buffer) {
-	// ?
+	switch (obj.kind) {
+	case INTEGER:
+		sprintf(buffer, "int:%d", obj.data.v_int);
+		break;
+	case STRING:
+		sprintf(buffer, "string:%s", obj.data.v_string);
+		break;
+	}
 }
 
 // don't touch below this line'
