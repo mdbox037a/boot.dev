@@ -1,3 +1,6 @@
 __pycache__/
 .idea
 binaries/
+.clang-format-ignore
+.clang-format
+.vscode
