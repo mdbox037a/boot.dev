@@ -6,7 +6,7 @@
 void stack_push(stack_t *stack, void *obj) {
         if (stack->count == stack->capacity) {
                 stack->capacity *= 2;
-                void *larger =
+                void **larger =
                     realloc(stack->data, stack->capacity * sizeof(void *));
                 if (stack->data == NULL) {
                         stack->capacity /= 2;
