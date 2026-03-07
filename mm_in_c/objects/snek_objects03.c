@@ -3,10 +3,21 @@
 #include <string.h>
 
 snek_object_t *new_snek_string(char *value) {
-        // ?
+        snek_object_t *obj = malloc(sizeof(snek_object_t));
+        if (obj == NULL) {
+                return NULL;
+        }
+        int length = strlen(value);
+        char *string = malloc(length + 1);
+        if (string == NULL) {
+                free(string);
+                return NULL;
+        }
+        strcpy(string, value);
+        obj->kind = STRING;
+        obj->data.v_string = string;
+        return obj;
 }
-
-// don't touch below this line
 
 snek_object_t *new_snek_integer(int value) {
         snek_object_t *obj = malloc(sizeof(snek_object_t));
