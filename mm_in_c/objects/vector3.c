@@ -4,10 +4,22 @@
 
 snek_object_t *new_snek_vector3(snek_object_t *x, snek_object_t *y,
                                 snek_object_t *z) {
-        // ?
+        if (x == NULL || y == NULL || z == NULL) {
+                return NULL;
+        }
+        snek_object_t *obj = malloc(sizeof(snek_object_t));
+        if (obj == NULL) {
+                return NULL;
+        }
+        obj->kind = VECTOR3;
+        snek_vector_t new_vector = {
+            .x = x,
+            .y = y,
+            .z = z,
+        };
+        obj->data.v_vector3 = new_vector;
+        return obj;
 }
-
-// don't touch below this line
 
 snek_object_t *new_snek_integer(int value) {
         snek_object_t *obj = malloc(sizeof(snek_object_t));
