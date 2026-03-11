@@ -27,6 +27,23 @@ snek_object_t *snek_add(snek_object_t *a, snek_object_t *b) {
                         return NULL;
                 }
         }
+        if (a->kind == STRING) {
+                if (b->kind != STRING) {
+                        return NULL;
+                } else {
+                        int new_len = strlen(a->data.v_string) +
+                                      strlen(b->data.v_string) + 1;
+                        char *tmp_str = calloc(new_len, sizeof(char));
+                        if (tmp_str == NULL) {
+                                return NULL;
+                        }
+                        strcat(tmp_str, a->data.v_string);
+                        strcat(tmp_str, b->data.v_string);
+                        snek_object_t new_sn_str = new_snek_string(tmp_str);
+                        free(tmp_str);
+                        return new_sn_str;
+                }
+        }
 }
 
 int snek_length(snek_object_t *obj) {
