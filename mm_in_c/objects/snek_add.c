@@ -44,6 +44,28 @@ snek_object_t *snek_add(snek_object_t *a, snek_object_t *b) {
                         return new_sn_str;
                 }
         }
+        if (a->kind == VECTOR3) {
+                if (b->kind != VECTOR3) {
+                        return NULL;
+                } else {
+                        x_result =
+                            snek_add(a->data.v_vector3.x, b->data.v_vector3.x);
+                        if (x_result == NULL) {
+                                return NULL;
+                        }
+                        y_result =
+                            snek_add(a->data.v_vector3.y, b->data.v_vector3.y);
+                        if (y_result == NULL) {
+                                return NULL;
+                        }
+                        z_result =
+                            snek_add(a->data.v_vector3.z, b->data.v_vector3.z);
+                        if (z_result == NULL) {
+                                return NULL;
+                        }
+                        return new_snek_vector3(x_result, y_result, z_result);
+                }
+        }
 }
 
 int snek_length(snek_object_t *obj) {
