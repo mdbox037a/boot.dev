@@ -66,6 +66,30 @@ snek_object_t *snek_add(snek_object_t *a, snek_object_t *b) {
                         return new_snek_vector3(x_result, y_result, z_result);
                 }
         }
+        if (a->kind == ARRAY) {
+                if (b != ARRAY) {
+                        return NULL;
+                } else {
+                        int tmp_size =
+                            (a->data.v_array.size) + (b->data.v_array.size);
+                        snek_object_t new_array = new_snek_array(tmp_size);
+                        int i, j;
+                        for (i = 0, j = 0; i < a->data.v_array.size; i++, j++) {
+                                snek_array_set(
+                                    new_array, i,
+                                    snek_array_get(
+                                        a->data.v_array.elements[j]));
+                        }
+                        for (j = 0; i < b->data.v_array.size; i++, j++) {
+                                snek_array_set(
+                                    new_array, i,
+                                    snek_array_get(
+                                        b->data.v_array.elements[j]));
+                        }
+                        return new_array;
+                }
+        }
+        return NULL;
 }
 
 int snek_length(snek_object_t *obj) {
