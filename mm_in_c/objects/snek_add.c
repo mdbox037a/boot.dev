@@ -3,7 +3,19 @@
 #include <string.h>
 
 snek_object_t *snek_add(snek_object_t *a, snek_object_t *b) {
-        // ?
+        if (a == NULL || b == NULL) {
+                return NULL;
+        }
+        if (a->kind == INTEGER) {
+                if (b->kind == INTEGER) {
+                        return new_snek_integer(a->data.v_int + b->data.v_int);
+                } else if (b->kind == FLOAT) {
+                        return new_snek_float((float)a->data.v_int +
+                                              b->data.v_float);
+                } else {
+                        return NULL;
+                }
+        }
 }
 
 int snek_length(snek_object_t *obj) {
