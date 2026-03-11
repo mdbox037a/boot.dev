@@ -39,7 +39,7 @@ snek_object_t *snek_add(snek_object_t *a, snek_object_t *b) {
                         }
                         strcat(tmp_str, a->data.v_string);
                         strcat(tmp_str, b->data.v_string);
-                        snek_object_t new_sn_str = new_snek_string(tmp_str);
+                        snek_object_t *new_sn_str = new_snek_string(tmp_str);
                         free(tmp_str);
                         return new_sn_str;
                 }
@@ -48,43 +48,30 @@ snek_object_t *snek_add(snek_object_t *a, snek_object_t *b) {
                 if (b->kind != VECTOR3) {
                         return NULL;
                 } else {
-                        x_result =
+                        snek_object_t *x_result =
                             snek_add(a->data.v_vector3.x, b->data.v_vector3.x);
-                        if (x_result == NULL) {
-                                return NULL;
-                        }
-                        y_result =
+                        snek_object_t *y_result =
                             snek_add(a->data.v_vector3.y, b->data.v_vector3.y);
-                        if (y_result == NULL) {
-                                return NULL;
-                        }
-                        z_result =
+                        snek_object_t *z_result =
                             snek_add(a->data.v_vector3.z, b->data.v_vector3.z);
-                        if (z_result == NULL) {
-                                return NULL;
-                        }
                         return new_snek_vector3(x_result, y_result, z_result);
                 }
         }
         if (a->kind == ARRAY) {
-                if (b != ARRAY) {
+                if (b->kind != ARRAY) {
                         return NULL;
                 } else {
                         int tmp_size =
                             (a->data.v_array.size) + (b->data.v_array.size);
-                        snek_object_t new_array = new_snek_array(tmp_size);
+                        snek_object_t *new_array = new_snek_array(tmp_size);
                         int i, j;
                         for (i = 0, j = 0; i < a->data.v_array.size; i++, j++) {
-                                snek_array_set(
-                                    new_array, i,
-                                    snek_array_get(
-                                        a->data.v_array.elements[j]));
+                                snek_array_set(new_array, i,
+                                               snek_array_get(a, j));
                         }
                         for (j = 0; i < b->data.v_array.size; i++, j++) {
-                                snek_array_set(
-                                    new_array, i,
-                                    snek_array_get(
-                                        b->data.v_array.elements[j]));
+                                snek_array_set(new_array, i,
+                                               snek_array_get(b, j));
                         }
                         return new_array;
                 }
