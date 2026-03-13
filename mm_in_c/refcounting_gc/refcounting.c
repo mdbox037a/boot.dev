@@ -3,10 +3,13 @@
 #include <string.h>
 
 snek_object_t *_new_snek_object() {
-        // ?
+        snek_object_t *obj = calloc(1, sizeof(snek_object_t));
+        if (obj == NULL) {
+                return NULL;
+        }
+        obj->refcount = 1;
+        return obj;
 }
-
-// don't touch below this line
 
 snek_object_t *new_snek_array(size_t size) {
         snek_object_t *obj = _new_snek_object();
