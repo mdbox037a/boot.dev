@@ -5,6 +5,7 @@
 #include <string.h>
 
 snek_object_t *_new_snek_object();
+void refcount_dec(snek_object_t *obj);
 
 snek_object_t *new_snek_vector3(snek_object_t *x, snek_object_t *y,
                                 snek_object_t *z) {
@@ -17,6 +18,9 @@ snek_object_t *new_snek_vector3(snek_object_t *x, snek_object_t *y,
         }
         obj->kind = VECTOR3;
         obj->data.v_vector3 = (snek_vector_t){.x = x, .y = y, .z = z};
+        x->refcount++;
+        y->refcount++;
+        z->refcount++;
         return obj;
 }
 
@@ -29,6 +33,9 @@ void refcount_free(snek_object_t *obj) {
                 free(obj->data.v_string);
                 break;
         case VECTOR3: {
+                refcount_dec(obj->data.v_vector3.x);
+                refcount_dec(obj->data.v_vector3.y);
+                refcount_dec(obj->data.v_vector3.z);
                 break;
         }
         default:
