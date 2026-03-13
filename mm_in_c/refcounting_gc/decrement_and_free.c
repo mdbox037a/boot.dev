@@ -5,14 +5,25 @@
 #include <string.h>
 
 void refcount_dec(snek_object_t *obj) {
-        // ?
+        if (obj == NULL) {
+                return;
+        }
+        obj->refcount--;
+        if (obj->refcount == 0) {
+                refcount_free(obj);
+        }
+        return;
 }
 
 void refcount_free(snek_object_t *obj) {
-        // ?
+        if (obj->kind == INTEGER || obj->kind == FLOAT) {
+                free(obj);
+        } else if (obj->kind == STRING) {
+                free(obj->data.v_string);
+                free(obj);
+        }
+        return;
 }
-
-// don't touch below this line
 
 void refcount_inc(snek_object_t *obj) {
         if (obj == NULL) {
