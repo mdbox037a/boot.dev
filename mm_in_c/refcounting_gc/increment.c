@@ -5,10 +5,12 @@
 #include <string.h>
 
 void refcount_inc(snek_object_t *obj) {
-        // ?
+        if (obj == NULL) {
+                return;
+        }
+        obj->refcount++;
+        return;
 }
-
-// don't touch below this line
 
 snek_object_t *_new_snek_object() {
         snek_object_t *obj = calloc(1, sizeof(snek_object_t));
