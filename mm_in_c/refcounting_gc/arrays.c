@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 
 bool snek_array_set(snek_object_t *snek_obj, size_t index,
                     snek_object_t *value) {
@@ -15,7 +16,11 @@ bool snek_array_set(snek_object_t *snek_obj, size_t index,
         if (index >= snek_obj->data.v_array.size) {
                 return false;
         }
+        if (snek_obj->data.v_array.elements[index] != NULL) {
+                refcount_dec(snek_obj->data.v_array.elements[index]);
+        }
         snek_obj->data.v_array.elements[index] = value;
+        refcount_inc(value);
         return true;
 }
 
@@ -34,13 +39,20 @@ void refcount_free(snek_object_t *obj) {
                 refcount_dec(vec.z);
                 break;
         }
+        case ARRAY: {
+                int i;
+                for (i = 0; i < obj->data.v_array.size; i++) {
+                        refcount_dec(obj->data.v_array.elements[i]);
+                }
+                free(obj->data.v_array.elements);
+                break;
+        }
+
         default:
                 assert(false);
         }
         free(obj);
 }
-
-// don't touch below this line
 
 snek_object_t *snek_array_get(snek_object_t *snek_obj, size_t index) {
         if (snek_obj == NULL) {
