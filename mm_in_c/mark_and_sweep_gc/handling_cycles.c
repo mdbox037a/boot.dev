@@ -14,8 +14,8 @@ munit_case(RUN, correctly_free, {
         // refcounts: first = 2, second = 2
         refcount_dec(first);
         refcount_dec(second);
-        assert_int(first->refcount, ==, 0, "Refcount first should be ?");
-        assert_int(second->refcount, ==, 0, "Refcount second should be ?");
+        assert_int(first->refcount, ==, 1, "Refcount first should be 1");
+        assert_int(second->refcount, ==, 1, "Refcount second should be 1");
 });
 
 int main() {
