@@ -2,15 +2,52 @@
 #include "vm.h"
 
 void trace(vm_t *vm) {
-        // ?
+        stack_t *gray_objects = stack_new(8);
+        if (gray_objects == NULL) {
+                return;
+        }
+        for (size_t i = 0; i < vm->objects->count; i++) {
+                snek_object_t *obj = (snek_object_t *)vm->objects->data[i];
+                if (obj->is_marked == true) {
+                        stack_push(gray_objects, obj);
+                }
+        }
+        while (gray_objects->count != 0) {
+                snek_object_t *tmp = stack_pop(gray_objects);
+                trace_blacken_object(gray_objects, tmp);
+        }
+        stack_free(gray_objects);
 }
 
 void trace_blacken_object(stack_t *gray_objects, snek_object_t *obj) {
-        // ?
+        switch (obj->kind) {
+        case INTEGER:
+        case FLOAT:
+        case STRING:
+                break;
+        case VECTOR3:
+                trace_mark_object(gray_objects, obj->data.v_vector3.x);
+                trace_mark_object(gray_objects, obj->data.v_vector3.y);
+                trace_mark_object(gray_objects, obj->data.v_vector3.z);
+                break;
+        case ARRAY:
+                for (size_t i = 0; i < obj->data.v_array.size; i++) {
+                        snek_object_t *tmp_obj =
+                            (snek_object_t *)obj->data.v_array.elements[i];
+                        trace_mark_object(gray_objects, tmp_obj);
+                }
+                break;
+        default:
+                return;
+        }
 }
 
 void trace_mark_object(stack_t *gray_objects, snek_object_t *obj) {
-        // ?
+        if (obj == NULL || obj->is_marked == true) {
+                return;
+        }
+        obj->is_marked = true;
+        stack_push(gray_objects, obj);
 }
 
 // don't touch below this line
