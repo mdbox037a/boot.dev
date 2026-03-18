@@ -3,10 +3,15 @@
 #include "vm.h"
 
 void mark(vm_t *vm) {
-        // ?
+        for (int i = 0; i < vm->frames->count; i++) {
+                frame_t *frame = (frame_t *)vm->frames->data[i];
+                for (int j = 0; j < frame->references->count; j++) {
+                        snek_object_t *obj =
+                            (snek_object_t *)frame->references->data[j];
+                        obj->is_marked = true;
+                }
+        }
 }
-
-// don't touch below this line
 
 void frame_reference_object(frame_t *frame, snek_object_t *obj) {
         stack_push(frame->references, obj);
