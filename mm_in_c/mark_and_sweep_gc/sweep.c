@@ -3,14 +3,23 @@
 #include "vm.h"
 
 void vm_collect_garbage(vm_t *vm) {
-        // ?
+        mark(vm);
+        trace(vm);
+        sweep(vm);
 }
 
 void sweep(vm_t *vm) {
-        // ?
+        for (size_t i = 0; i < vm->objects->count; i++) {
+                snek_object_t *obj = (snek_object_t *)vm->objects->data[i];
+                if (obj->is_marked == true) {
+                        obj->is_marked = false;
+                } else {
+                        snek_object_free(obj);
+                        vm->objects->data[i] = NULL;
+                }
+        }
+        stack_remove_nulls(vm->objects);
 }
-
-// don't touch below this line
 
 void mark(vm_t *vm) {
         for (size_t i = 0; i < vm->frames->count; i++) {
