@@ -34,5 +34,11 @@ func (lm LinkMessage) Type() string {
 }
 
 func filterMessages(messages []Message, filterType string) []Message {
-	// ?
+	filteredMessages := []Message{}
+	for _, message := range messages {
+		if message.Type() == filterType {
+			filteredMessages = append(filteredMessages, message)
+		}
+	}
+	return filteredMessages
 }
