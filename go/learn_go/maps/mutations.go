@@ -6,12 +6,12 @@ func deleteIfNecessary(users map[string]user, name string) (deleted bool, err er
 	temp, ok := users[name]
 	if !ok {
 		return false, errors.New("not found")
-	} else if !temp.scheduledForDeletion {
-		return false, nil
-	} else {
-		delete(users, name)
-		return true, nil
 	}
+	if !temp.scheduledForDeletion {
+		return false, nil
+	}
+	delete(users, name)
+	return true, nil
 }
 
 type user struct {
