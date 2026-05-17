@@ -1,4 +1,4 @@
-package textio
+package main
 
 import (
 	"fmt"
