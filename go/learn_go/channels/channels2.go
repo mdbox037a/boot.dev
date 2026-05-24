@@ -3,7 +3,9 @@ package main
 import "fmt"
 
 func waitForDBs(numDBs int, dbChan chan struct{}) {
-	<-dbChan
+	for i := 0; i < numDBs; i++ {
+		<-dbChan
+	}
 }
 
 func getDBsChannel(numDBs int) (chan struct{}, *int) {
