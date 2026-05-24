@@ -1,7 +1,15 @@
 package main
 
 func countReports(numSentCh chan int) int {
-	// ?
+	numSent := 0
+	for {
+		v, ok := <-numSentCh
+		if !ok {
+			break
+		}
+		numSent += v
+	}
+	return numSent
 }
 
 func sendReports(numBatches int, ch chan int) {
