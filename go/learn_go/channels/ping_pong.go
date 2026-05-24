@@ -10,7 +10,7 @@ func pingPong(numPings int) {
 	pongs := make(chan struct{})
 	go ponger(pings, pongs)
 	go pinger(pings, numPings)
-	go func() {
+	func() {
 		i := 0
 		for range pongs {
 			fmt.Println("got pong", i)
@@ -19,8 +19,6 @@ func pingPong(numPings int) {
 		fmt.Println("pongs done")
 	}()
 }
-
-// don't touch below this line
 
 func pinger(pings chan struct{}, numPings int) {
 	sleepTime := 50 * time.Millisecond
