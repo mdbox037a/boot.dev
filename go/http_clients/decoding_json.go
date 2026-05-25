@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 )
@@ -12,5 +13,8 @@ func getIssues(url string) ([]Issue, error) {
 	}
 	defer res.Body.Close()
 
-	// ?
+	var issues []Issue
+	decoder := json.NewDecoder(res.Body)
+	err = decoder.Decode(&issues)
+	return issues, err
 }
