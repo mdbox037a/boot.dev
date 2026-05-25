@@ -16,5 +16,8 @@ func getIssues(url string) ([]Issue, error) {
 	var issues []Issue
 	decoder := json.NewDecoder(res.Body)
 	err = decoder.Decode(&issues)
+	if err != nil {
+		return nil, err
+	}
 	return issues, err
 }
