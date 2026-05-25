@@ -1,33 +1,20 @@
 package main
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
-	"io"
-	"net/http"
+	"log"
 )
 
-func getIssueData(url string) ([]byte, error) {
-	res, err := http.Get(url)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-	defer res.Body.Close()
+const issueURL = "https://api.boot.dev/v1/courses_rest_api/learn-http/issues"
 
-	data, err := io.ReadAll(res.Body)
+func main() {
+	issues, err := getIssueData("")
 	if err != nil {
-		return nil, fmt.Errorf("error reading response: %w", err)
+		log.Fatalf("error getting issue data: %v", err)
 	}
-
-	return data, nil
-}
-
-func prettify(data string) (string, error) {
-	var prettyJSON bytes.Buffer
-	err := json.Indent(&prettyJSON, []byte(data), "", "  ")
+	prettyData, err := prettify(string(issues))
 	if err != nil {
-		return "", fmt.Errorf("error indenting JSON: %w", err)
+		log.Fatalf("error prettifying data: %v", err)
 	}
-	return prettyJSON.String(), nil
+	fmt.Println(prettyData)
 }
