@@ -10,5 +10,5 @@ func main() {
 	if err != nil {
 		log.Fatalf("error getting issue data: %v", err)
 	}
-	// ?
+	fmt.Println(string(issues))
 }
