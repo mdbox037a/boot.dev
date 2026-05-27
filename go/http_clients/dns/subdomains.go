@@ -1,3 +1,3 @@
 package main
 
-const domain = "boot.dev"
+const domain = "api.boot.dev"
