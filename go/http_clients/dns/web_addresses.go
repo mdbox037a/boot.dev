@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
@@ -27,5 +28,14 @@ func getIPAddress(domain string) (string, error) {
 		return "", fmt.Errorf("error reading response body: %w", err)
 	}
 
-	return string(body), nil
+	dnsRes := DNSResponse{}
+	if err := json.Unmarshal(body, &dnsRes); err != nil {
+		return "", fmt.Errorf("error unmarshaling response body: %w", err)
+	}
+
+	if len(dnsRes.Answer) == 0 {
+		return "", fmt.Errorf("no answer provided by remote dns host.")
+	}
+
+	return string(dnsRes.Answer[0].Data), nil
 }
