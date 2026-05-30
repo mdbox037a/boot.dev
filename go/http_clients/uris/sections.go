@@ -10,9 +10,9 @@ func newParsedURL(urlString string) ParsedURL {
 		return ParsedURL{}
 	}
 
-	pass, ok := parsedUrl.User.Password()
-	if !ok {
-		pass = ""
+	pass := ""
+	if pw, hasPass := parsedUrl.User.Password(); hasPass {
+		pass = pw
 	}
 
 	return ParsedURL{
