@@ -10,5 +10,5 @@ func getUserCode(url string) int {
 		return 0
 	}
 	defer res.Body.Close()
-	// ?
+	return res.StatusCode
 }
