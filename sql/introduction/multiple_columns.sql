@@ -1,4 +1,6 @@
 SELECT
-  age
+  age,
+  name,
+  balance
 FROM
   users;
