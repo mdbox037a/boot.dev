@@ -1,0 +1,4 @@
+SELECT
+  age
+FROM
+  users;
