@@ -1,4 +1,4 @@
 SELECT
-  *
+  age
 FROM
   users;
