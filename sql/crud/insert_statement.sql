@@ -17,20 +17,7 @@ VALUES
     'DavidDev',
     'insertPractice',
     false
-  );
-
-
-INSERT INTO
-  users (
-    id,
-    name,
-    age,
-    country_code,
-    username,
-    password,
-    is_admin
-  )
-VALUES
+  ),
   (
     2,
     'Samantha',
