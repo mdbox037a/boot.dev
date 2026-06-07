@@ -10,7 +10,7 @@ VALUES
 INSERT INTO
   users (id, name, age)
 VALUES
-  (2, 'Montgomery Burns', 33);
+  (2, 1, 33);
 
 
 SELECT
