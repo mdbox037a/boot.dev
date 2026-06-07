@@ -15,7 +15,7 @@ INSERT INTO
   users (id, name, age, username, password, is_admin)
 VALUES
   (
-    1,
+    2,
     'Jerry',
     25,
     'jerrysmith',
