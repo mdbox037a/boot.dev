@@ -7,4 +7,4 @@ VALUES
 INSERT INTO
   users (id, name, country_code)
 VALUES
-  (2, 'Amit', 'IND');
+  (2, 'Amit', 'IN');
