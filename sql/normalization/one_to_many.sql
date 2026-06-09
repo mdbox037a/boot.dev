@@ -7,3 +7,12 @@ CREATE TABLE users (
   password TEXT NOT NULL,
   is_admin BOOLEAN
 );
+
+
+CREATE TABLE devices (
+  id INTEGER PRIMARY KEY,
+  mac_address TEXT,
+  type TEXT,
+  user_id INTEGER,
+  CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES users (id)
+);
