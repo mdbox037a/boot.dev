@@ -13,9 +13,6 @@ def get_filter_cmd(filter_one, filter_two):
     return filter_cmd
 
 
-# don't touch below this line
-
-
 def replace_bad(text):
     return text.replace("bad", "good")
 
