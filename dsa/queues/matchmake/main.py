@@ -3,7 +3,7 @@ from queue import Queue
 queue = Queue()
 
 
-def matchmake(queue, user):
+def makematch(queue, user):
     name = user[0]
     action = user[1]
     if action is "leave":
